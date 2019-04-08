@@ -1,0 +1,12 @@
+spring:
+  profiles:
+    active: shard-table
+# 配置参考地址
+# https://shardingsphere.apache.org/document/legacy/3.x/document/cn/manual/sharding-jdbc/configuration/config-java/
+sharding:
+  jdbc:
+    config:
+      props:
+        # 开启sql日志打印
+        sql:
+          show: true

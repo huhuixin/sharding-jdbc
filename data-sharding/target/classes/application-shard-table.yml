@@ -1,0 +1,24 @@
+mybatis-plus:
+  mapper-locations: classpath*:mybatis/*.xml
+  configuration:
+    mapUnderscoreToCamelCase: true
+sharding:
+  jdbc:
+    datasource:
+      names: shard
+      shard:
+        driver-class-name: com.mysql.jdbc.Driver
+        jdbc-url: jdbc:mysql://192.168.88.121:3306/shard?useUnicode=true&characterEncoding=utf-8&useSSL=false
+        type: com.zaxxer.hikari.HikariDataSource
+        username: root
+        password: jbt1234
+    # 单库分表策略
+    config:
+      sharding:
+        tables:
+          user:
+            actual-data-nodes: shard.user_${0..1}
+            table-strategy:
+              standard:
+                sharding-column: id
+                precise-algorithm-class-name: com.hhx.shard.algorithm.PreciseShardTable
